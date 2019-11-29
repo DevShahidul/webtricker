@@ -1,0 +1,226 @@
+
+//Font face mixin
+// =============================================================================
+// String Replace
+// =============================================================================
+
+@function str-replace($string, $search, $replace: "") {
+	$index: str-index($string, $search);
+
+	@if $index {
+		@return str-slice($string, 1, $index - 1) + $replace + str-replace(str-slice($string, $index + str-length($search)), $search, $replace);
+	}
+
+	@return $string;
+}
+
+// =============================================================================
+// Font Face
+// =============================================================================
+
+@mixin font-face($name, $path, $weight: null, $style: null, $exts: eot woff2 woff ttf svg) {
+	$src: null;
+
+	$extmods: (
+		eot: "?",
+		svg: "#" + str-replace($name, " ", "_")
+	);
+
+	$formats: (
+		otf: "opentype",
+		ttf: "truetype"
+	);
+
+	@each $ext in $exts {
+		$extmod: if(map-has-key($extmods, $ext), $ext + map-get($extmods, $ext), $ext);
+		$format: if(map-has-key($formats, $ext), map-get($formats, $ext), $ext);
+		$src: append($src, url(quote($path + "." + $extmod)) format(quote($format)), comma);
+	}
+
+	@font-face {
+		font-family: quote($name);
+		font-style: $style;
+		font-weight: $weight;
+		src: $src;
+	}
+} // End font-face mixin
+
+// Font family style weight
+@mixin fonts($font-size: $d-font-size, $line-height: $d-line-height, $fontFamily: $d-font-family, $fontWeight: normal, $fontStyle: normal){
+    font-size: $font-size;
+    line-height: $line-height;
+    font-family: $fontFamily;
+    font-weight: $fontWeight;
+    font-style: $fontStyle;
+
+} // End font property
+
+// Transition mixin
+@mixin transition($property: all, $duration: .3s, $timing-function: ease-in-out, $delay: 0s) {
+    -webkit-transition: $property $duration $timing-function $delay;
+    -moz-transition: $property $duration $timing-function $delay;
+    -ms-transition: $property $duration $timing-function $delay;
+    -o-transition: $property $duration $timing-function $delay;
+    transition: $property $duration $timing-function $delay;
+}
+
+// Transition mixin
+@mixin transitionCustom($property, $property2 ) {
+    -webkit-transition: $property, $property2;
+    -moz-transition: $property, $property2;
+    -ms-transition: $property, $property2;
+    -o-transition: $property, $property2;
+    transition: $property, $property2;
+}
+
+// Transform mixin
+@mixin transform($property) {
+    -webkit-transform: $property;
+    -moz-transform: $property;
+    -ms-transform: $property;
+    -o-transform: $property;
+    transform: $property;
+} // end transform
+
+// Clip path
+@mixin clip-path($property){
+    -webkit-clip-path: $property;
+    -moz-clip-path: $property;
+    clip-path: $property;
+}
+
+// Animation fill mode
+@mixin fill-mode($property){
+    -webkit-animation-fill-mode: $property; 
+    -moz-animation-fill-mode: $property; 
+    animation-fill-mode: $property;
+}
+
+// Center top left both position mixin
+@mixin centerBoth{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    @include transform(translateX(-50%) translateY(-50%));
+    text-align: center;
+}
+
+// Center only left position
+@mixin centerLeft {
+    position: absolute;
+    left: 50%;
+    @include transform(translateX(-50%));
+}
+
+// Center only top position
+@mixin centerTop {
+    position: absolute;
+    top: 50%;
+    @include transform(translateY(-50%));
+}
+
+// Display Inline middle
+@mixin inlineMiddle {
+    display: inline-block; 
+    vertical-align: middle;
+    margin: 0 -2px;
+}
+
+// Full width heiht absolute
+@mixin fullScreenAbs($top: 0, $right: 0, $bottom: 0, $left: 0) {
+    position: absolute;
+    top: $top;
+    right: $right;
+    bottom: $bottom;
+    left: $left;
+}
+
+// Sudo element
+@mixin sudoElement($top: 0, $right: 0, $bottom: 0, $left: 0, $zindex: -1, $position: absolute){
+    content: "";
+    top: $top;
+    right: $right;
+    bottom: $bottom;
+    left: $left;
+    position: $position;
+    z-index: $zindex;
+} // End sudo element
+
+// Sass grid
+@mixin grid($cols, $mgn){
+    float: left;
+    margin-right: $mgn;
+    width: ( (100% - (($cols - 1) * $mgn)) / $cols);
+    &:nth-child(#{$cols}n){
+        margin-right: 0;
+    }
+}
+
+//keyframe mixin
+@mixin keyframes($animation-name) {
+    @-webkit-keyframes #{$animation-name} {
+      @content;
+    }
+  
+    @-moz-keyframes #{$animation-name} {
+      @content;
+    }
+  
+    @-ms-keyframes #{$animation-name} {
+      @content;
+    }
+  
+    @-o-keyframes #{$animation-name} {
+      @content;
+    }
+  
+    @keyframes #{$animation-name} {
+      @content;
+    }
+}
+
+// Background image style 
+@mixin background-img{
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+}
+
+@mixin belowViewportH($value){
+    height: $value;
+    height: $value;
+}
+
+@mixin sudoBeforeFull{
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    content: "";
+    z-index: -1;
+}
+
+@mixin textLoadEffect{
+    float: left; 
+    width: 100%;
+    @include transform(translateY(150px));
+    opacity: 0;
+    @include  clip-path(polygon(100% 0, 100% 100%, 0 100%, 0 0));
+    animation-timing-function: ease;
+    animation-duration: .8s;
+    @include fill-mode(forwards);
+}
+
+@mixin slideUpAnimation($duraion: .6s){
+    float: left;
+    width: 100%;
+    display:block; 
+    @include transform(translateY(100px)); 
+    opacity: 0; 
+    @include clip-path(polygon(100% 0, 100% 100%, 0 100%, 0 0));
+    animation-timing-function: ease; 
+    animation-duration: $duraion; 
+    -webkit-animation-fill-mode: forwards;
+    animation-fill-mode: forwards;
+}

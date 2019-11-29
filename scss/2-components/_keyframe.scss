@@ -1,0 +1,32 @@
+// Bourbon mixins
+@include keyframes(spin){
+  0% { 
+    @include transform(rotate(0deg));
+  }
+  100% {
+    @include transform(rotate(360deg));
+  }
+}
+
+@include keyframes(spin-reverse) {
+  0% { 
+    @include transform(rotate(0deg));
+  }
+  100% {
+    @include transform(rotate(-360deg));
+  }
+}
+
+
+@include keyframes(SlideUp){
+    0%{
+        @include transform(translateY(100px));
+        opacity: 0;
+        @include clip-path(polygon(100% 0, 100% 100%, 0 100%, 0 0));
+    }
+    100%{
+        @include transform(translateY(0px));
+        opacity: 1;
+        @include clip-path(polygon(100% 0, 100% 100%, 0 100%, 0 0));
+    }
+}

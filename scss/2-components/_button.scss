@@ -1,0 +1,136 @@
+.btn{
+    @include transition(all .3s ease-in);
+    border: 0;
+    outline: none;
+    border-radius: 0;
+    overflow: hidden;
+    position: relative;
+    z-index: 1;
+    text-transform: uppercase;
+    font-weight: 600;
+    &::after,
+    &::before{
+        background: $white;
+		content: ' ';
+		display: block;
+		height: calc(100% + 10px);
+		position: absolute;
+        @include transform(skewX(-45deg));
+		width: 0;
+		z-index: -1;
+        @include transition($duration: 300ms);
+    }
+    &::before{
+        left: -20%;
+        top: -10px;
+    }
+    &::after{
+        right: -20%; 
+        bottom: -10px;
+    }
+    
+    &:hover{
+        box-shadow: inset 0 1px 2px rgba(0,0,0,.2);
+        &::after,
+        &::before{
+            width: 150%;
+        }
+        color: $white;
+    }
+    &.white{
+        background-color: $white;
+        &::after,
+        &::before{
+            background-color: $blue;
+        }
+        
+        &:hover{
+            color: $white;
+            border-color: $blue;
+        }
+    }
+    &.blue{
+        background-color: $blue;
+        color: $white;
+        &::after,
+        &::before{
+            background-color: $white;
+        }
+        &:hover{
+            color: $blue;
+            border-color: $white;
+        }
+    }
+    &.orange{
+        background-color: $orange;
+        color: $white;
+        &::after,
+        &::before{
+            background-color: $white;
+            border-color: $white;
+        }
+        &:hover{
+            color: $orange;
+            border-color: $white;
+        }
+    }
+    &.light-green{
+        background-color: $light-green;
+        color: $theme-text;
+        &::after,
+        &::before{
+            background-color: $white;
+            border-color: $white;
+        }
+        &:hover{
+            color: $green;
+            border-color: $white;
+        }
+    }
+}
+
+.btn-transparent{
+    border: 1px solid $orange;
+    background-color: transparent;
+    position: relative;
+    z-index: 1;
+    color: $white;
+    &::after,
+    &::before{
+        background-color: $orange;
+    }
+    &.white{
+        background-color: transparent;
+        border-color: $white;
+        &::after,
+        &::before{
+            background-color: $white;
+        }
+        
+        &:hover{
+            color: $gray-500;
+        }
+    }
+    &.blue{
+        background-color: transparent;
+        border-color: $blue;
+        &::after,
+        &::before{
+            background-color: $blue;
+        }
+        &:hover{
+            color: $white;
+        }
+    }
+    &.orange{
+        background-color: transparent;
+        border-color: $orange;
+        &::after,
+        &::before{
+            background-color: $orange;
+        }
+        &:hover{
+            color: $white;
+        }
+    }
+}

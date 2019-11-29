@@ -1,0 +1,54 @@
+// Colors
+$black: #000000;
+$base-text: $theme-text;
+$base-bg: #ffffff;
+$secondary-color: #f2f2f0;
+$tertiary-color: #949494;
+$theme-gray: #8f9194;
+$green: $theme-green;
+$blue: $theme-blue;
+$orange: $theme-orange;
+$transparent-orange: rgba(244, 121, 32, 0.1);
+$base-transparent: rgba(17, 26, 39, .7);
+
+$transparent-black: rgba(0, 0, 0, .2);
+$transparent-black6: rgba(0, 0, 0, .6);
+$transparent-blue: rgba(0, 134, 204, 0.15);
+
+$input-default-color: $input-field-color;
+$input-default-border: $input-field-border;
+$input-focus-border: $theme-blue;
+
+// Color extend 
+%whiteColor{
+    color: $base-bg;
+}
+
+%whiteBackground{
+    background-color: $base-bg;
+}
+
+%baseTextColor{
+    color: $base-text;
+}
+
+%baseTextBgColor{
+    background-color: $base-text;
+}
+
+%baseGrayColor{
+    color: $tertiary-color;
+}
+
+.green-color{
+    color: $green;
+}
+.green-bg{
+    background-color: $green;
+}
+.orange-color{
+    color: $orange;
+}
+.orange-bg{
+    background-color: $orange;
+}

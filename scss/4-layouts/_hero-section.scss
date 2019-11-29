@@ -1,0 +1,52 @@
+.hero-section{
+    position: relative;
+    z-index: 1;
+    @include background-img;
+    &:before{
+        background-color: $transparent-black;
+        @include sudoBeforeFull;
+    }
+    .container,
+    .row{
+        @include belowViewportH(calc(100vh - 180px));
+        min-height: 450px;
+        @include media-breakpoint-down(sm){
+            min-height: 300px;
+        }
+    }
+}
+.hero-content{
+    color: $white;
+    h4,
+    h2,
+    span,
+    a{
+        @include textLoadEffect;
+        animation-delay: .5s;
+    }
+    h2{
+        animation-delay: .7s;
+    }
+    a{
+        width: auto;
+        margin-bottom: 5px;
+        animation-delay: 1.5s;
+    }
+}
+
+.loaded{
+    .hero-content{
+        h4,
+        h2,
+        span,
+        a{
+            animation-name: SlideUp;
+        }
+        h2{
+            animation-delay: .7s;
+        }
+        p{
+            float: left;
+        }
+    }
+}

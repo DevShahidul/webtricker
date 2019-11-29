@@ -1,0 +1,99 @@
+// roboto font face
+@import url('https://fonts.googleapis.com/css?family=Roboto:300,400,400i,500');
+@import url('https://fonts.googleapis.com/css?family=Poppins:400,600&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Raleway:300,400,500,700&display=swap');
+
+// NeoDisplay font face
+@include font-face("NoeDisplay-Regular", "../fonts/NoeDisplay-Regular");
+
+// AvenirNextMedium font face
+@include font-face("Avenir-Next-Medium", "../fonts/AvenirNextMedium");
+
+// AvenirNextDemiBold font face
+@include font-face("AvenirNextDemiBold", "../fonts/AvenirNextDemiBold");
+
+// NoeDisplay Fonts stack
+$font-stack-NoeDisplay-Regular: (
+  "NoeDisplay-Regular",
+  sans-serif,
+);
+
+// Poppins
+$font-stack-poppins: (
+  "Poppins",
+  sans-serif,
+);
+
+// fonts
+$d-font-size: $body-font-size;
+$d-line-height: $body-line-height;
+$d-font-weight: $body-font-weight;
+$nav-font-size: 36px;
+$d-font-family: $font-stack-poppins;
+$nav-line-height: $nav-font-size + 3;
+$subnav-font-size: $d-font-size + 2;
+$subnav-line-height: $subnav-font-size + 6;
+
+$regularFontWeight: 400;
+$mediumFontWeight: 500;
+$boldFontWeight: 700;
+
+body{
+    font-size: $d-font-size;
+    line-height: $d-line-height;
+    font-family: $d-font-family; 
+    font-weight: $d-font-weight;   
+    -webkit-text-size-adjust: 100%; 
+    -moz-text-size-adjust:100%; 
+    -moz-osx-font-smoothing:grayscale;
+    -webkit-font-smoothing:antialiased; 
+}
+
+a{
+    outline: none;
+    &:focus{
+        outline: none;        
+    }
+}
+
+// Heading fonts
+h2{
+    @include fonts($heading2-font-size, $heading2-line-height);
+    font-family: $d-font-family;
+    @include media-breakpoint-down(sm){
+        font-size: 26px;
+        line-height: 34px;
+    }
+}
+
+h4{
+    @include fonts(1.5rem, 2.2rem);    
+    font-weight: 600;
+    @include media-breakpoint-down(sm){
+        @include fonts(1.2rem, 2rem);
+    }
+}
+
+h5{
+    font-family: $font-stack-poppins;
+    font-weight: 600;
+}
+
+h6{
+    @include fonts(17px, $d-line-height + 3);
+    color: $tertiary-color;
+    letter-spacing: 3px;
+}
+
+// button
+.btn{
+    font-weight: $mediumFontWeight;
+}
+
+// lead text
+.lead-text{
+    @include fonts(1.5rem, 2.4rem);
+    @include media-breakpoint-down(sm){
+        @include fonts(1rem, 1.8rem);
+    }
+}

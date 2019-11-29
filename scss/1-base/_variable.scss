@@ -1,0 +1,8 @@
+
+// Color state
+$base-border: $base-text;
+$hovered-text: $secondary-color;
+$hovered-bg: $base-text;
+$error: $theme-orange;
+$warning: tint($error, 2%);
+$success: $base-text;

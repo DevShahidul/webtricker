@@ -1,0 +1,43 @@
+/* =====================
+        fonts style
+   ===================== */
+
+$theme-orange: #f47920;
+$theme-green: #107139;
+$theme-icon-bg: #539c74;
+$theme-border-bg: #107139b3;
+$light-green: #eef5f1;
+$theme-blue: #0086cc;
+$theme-gray: #8f9194;
+$theme-text: #111a27;
+
+// Body fonts
+$body-font-size: 1rem;
+$body-line-height: 1.7rem;
+$body-font-weight: 300;
+
+//Heading style
+$heading1-font-size: 55px;
+$heading1-line-height: 65px;
+$heading1-color: 65px;
+$heading2-font-size: 45px;
+$heading2-line-height: 55px;
+$logo-width: 170px;
+$logo-width-mobile: 100px;
+
+//Nav style 
+$nav-size: 16px;
+$nav-line-height: 22px;
+$nav-color: rgba(0, 0, 0, 0.5);
+$nav-hover-color: rgba(0, 0, 0, 0.9);
+$nav-active-color: $nav-hover-color;
+
+// Section spacing
+$section-space-desktop: 120px;
+$section-space-tab: 60px;
+$section-space-mobi: 40px;
+
+// Form style
+$input-field-color: #a2b0bd;
+$input-field-border: #d9dee4;
+$input-focus-border: $theme-blue;

@@ -1,0 +1,562 @@
+/* Our client section style */
+.our-clients-section{
+    background-color: rgba(16, 113, 57, 0.07);
+}
+
+.clients-carousel{
+    text-align: center;
+    margin: 0 !important;
+}
+.clients-carousel img{
+    display: inline-block; 
+    vertical-align: middle; 
+    padding: 0 25px;
+}
+
+
+/* Our services section style */
+.our-services-section{
+    .container{
+        padding-top: 70px;
+        @include media-breakpoint-down(sm){
+            padding-top: 50px;
+        }
+        /*border-top: 6px double $orange;*/
+    }
+    h2{
+        color: $green;
+    }
+}
+
+.service-item{
+    margin-top: 50px;
+    @include media-breakpoint-down(sm){
+        margin-top: 30px;
+    }
+}
+.service-content{
+    padding-right: 25px;
+    h5{
+        color: $green; 
+        margin-bottom: 1rem;
+    }
+}
+.service-icon{
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background-color: $theme-icon-bg;
+    overflow: hidden;
+    position: relative;
+    padding: 15px;
+}
+
+/* Latest project section */
+.our-projects-section{
+    .slick-slide{
+        padding: 0 15px;
+        @include media-breakpoint-down(sm){
+            padding: 0;
+        }
+    }
+}
+.project-item{
+    float: left;
+    padding: 30px 20px;
+    //border: 1px solid $orange;
+    position: relative;
+    text-align: center;
+    z-index: 1;
+    img.hidden{
+        position: absolute;
+        left: 0; 
+        top: 0;
+        width: 100%;
+        height: 100%;
+        @include transition($duration: 500ms);
+        @include transform(scaleX(0));
+        z-index: 2;
+        padding: 30px 20px;
+    }
+    a{
+        z-index: 5;
+        width: calc(100% - 30px);
+        @include centerBoth;
+        left: 0;
+        margin-left: 15px;
+        opacity: 0;
+        visibility: hidden;
+        //@include transition($property: transform, $duration: 0.5s, $property: background, $duration: 300ms);
+        @include transitionCustom(transform 0.5s ease-in, border 300ms ease-in-out);
+        @include transform(scale(.5) translateY(-50%));
+        
+    }
+    em{
+        background-color: $theme-border-bg; 
+        position: absolute; 
+        z-index: 6;
+        @include transition(
+            $duration: .5s    
+        );
+        transition-delay: .8s;
+    }
+    &::after{
+        background-color: $transparent-black;
+        @include sudoElement;
+        opacity: 0;
+        visibility: hidden;
+        position: absolute;
+        z-index: 3;
+    }
+    &:hover{
+        a{
+            @include transform(scale(1) translateY(-50%));
+            opacity: 1;
+            visibility: visible;
+        }
+        img.hidden{
+            @include transform(scaleX(1));
+            opacity: 1;
+            visibility: visible;
+        }
+        &::after{
+            opacity: 1;
+            visibility: visible;
+        }
+    }
+}
+
+.slick-active{
+    .project-item{
+        em{
+            &:first-child,
+            &:nth-child(3){
+                width: 100% !important;
+            }
+            &:nth-child(2),
+            &:nth-child(4){
+                height: 100% !important;
+            }
+        }
+    }
+}
+
+/* Counter area section */
+.counter-area{
+    @extend %section-space-mt-desk;
+    background-color: $light-green;
+    padding-bottom: 120px;
+    @include media-breakpoint-down(md){
+        padding-bottom: 60px;
+        @extend %section-space-mt-btab;
+    }
+    @include media-breakpoint-down(sm){
+        padding-bottom: 40px;
+        @extend %section-space-mt-bmobi;
+    }
+}
+.project-carousel-wrap{
+    @include media-breakpoint-down(sm){
+        padding-top: 30px;
+    }
+}
+
+.why-like-us-section{
+    padding-top: 70px;
+    .single-reason{
+        float: left; padding-right: 25px;
+        margin-top: 50px;
+        @include media-breakpoint-down(sm){
+            margin-top: 30px;
+        }
+        > img{
+            margin-bottom: 30px;
+        }
+        h5{
+            margin-bottom: 15px;
+        }
+    }
+}
+
+// Our team section 
+.our-team-section{
+    @include background-img;
+    @extend %section-spacer-pb-desk;
+    
+    @include media-breakpoint-down(md){
+        @extend %section-spacer-pb-btab;
+    }
+    @include media-breakpoint-down(sm){
+        @extend %section-spacer-pb-bmobi;
+    }
+    position: relative;
+    z-index: 1;
+    .bg{
+        position: absolute;
+        left: 0;
+        top: 100px;
+        bottom: 120px;
+        right: 0;
+        background-color: #f9f9fa;
+        @include clip-path(inset(0px 0px 0px 0px));
+        @include media-breakpoint-down(sm){
+            display: none;
+        }
+    }
+    .team-member-wrapper{
+        padding: 50px 0;
+        @include media-breakpoint-down(sm){
+            padding-bottom: 0;
+            padding-top: 30px;
+        }
+    }
+    .team-member-info{
+        padding: 20px 0;
+        p{
+            padding-top: 15px;
+        }
+        h3{
+            color: $base-text;
+            font-weight: 700;
+        }
+        .social{
+            float: left; 
+            width: 100%;
+            margin-top: 20px;
+            a{
+                float: left;
+                width: 25px;
+                height: 25px;
+                margin-right: 10px;
+                position: relative;
+                img{
+                    max-width: 100%;
+                    position: absolute;
+                    left: 0;
+                    top: 0;
+                    width: 100%;
+                    @include transition;
+                    &.hover{
+                        opacity: 0;
+                    }
+                }
+                &:hover{
+                    img{
+                        opacity: 0;
+                        &.hover{
+                            opacity: 1;
+                        }
+                    }
+                }
+            }
+            
+        }
+    }
+    .team-member-description{
+        h2,
+        p{
+            color: $base-text;
+
+        }    
+    }
+    
+    .carousel-counter{
+        .current{
+            color: $blue;
+        }
+    }
+}
+.team-carousel-wrap{
+    @include media-breakpoint-up(sm){
+        margin-top: 50px;
+    }
+    .team-member{
+        @include transition($property: border, $duration: .5s);
+        padding-top: .5rem;
+        transition-delay: .3s;
+    }
+    .slick-current{
+        .team-member{
+            h5{
+                &::after{
+                    width: 100%;
+                }
+            }
+        }
+    }
+}
+.team-member{
+    max-width: 100%;
+}
+.team-member-description{
+    @include media-breakpoint-down(sm){
+        padding-top: 50px;
+    }
+}
+.team-member-picture{
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    > img{
+        width: 100%;
+    }
+    a.btn{
+        position: absolute;
+        left: 50%; 
+        top: -50px; 
+        width: calc(100% - 30px);
+        @include transform(translate(-50%, -50%));
+        @include transition;
+        z-index: 3;
+    }
+    &::after{
+        @include sudoElement;
+        background-color: $transparent-black;
+        opacity: 0;
+        visibility: hidden;
+        @include transition;
+        z-index: 2;
+    }
+    &:hover{
+        a.btn{
+            top: 50%;
+        }
+        &::after{
+            opacity: 1;
+            visibility: visible;
+        }
+    }
+}
+.team-member{
+    h5{
+        background-color: $light-green;
+        padding: 15px;
+        text-align: center;
+        color: $base-text;
+        text-transform: capitalize;
+        position: relative;
+        &::after{
+            position: absolute; 
+            bottom: -9px; 
+            width: 0%; 
+            height: 5px; 
+            content: "";
+            background-color: $green;
+            left: 0;
+            @include transition(
+                $property: width, 
+                $duration: .5s
+            );
+            transition-delay: .3s;
+            
+        }
+    }
+    .team-member-info{
+        width: 100%;
+        background-color: $blue;
+        padding: 30px 20px;
+        color: $white;
+        font-size: 12px;
+        line-height: 20px;
+        text-align: center;
+        display: none;
+        h5{
+            margin-bottom: 1rem;
+        }
+        .social{
+            width: 100%;
+            margin-top: 10px;
+            text-align: center;
+            .icon{
+                display: inline-block;
+                vertical-align: middle;
+                max-width: 20px;
+                margin: 5px;
+                img{
+                    width: 20px;
+                    height: 20px;
+                }
+            }
+        }
+    }
+}
+
+/*Edge - works to 41.16299.402.0*/
+@supports (-ms-ime-align:auto) 
+{
+    .testimonial-section{background-attachment: scroll !important;}
+}
+
+/*Ie 10/11*/
+@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) 
+{
+    .testimonial-section{background-attachment: scroll !important;}
+}
+
+.testimonial-section{
+    @include background-img;
+    background-attachment: fixed;
+    position: relative;
+    z-index: 1;
+    @include media-breakpoint-down(sm){
+        padding-right: 15px;
+        padding-left: 15px;
+    }
+    &::before{
+        @include sudoElement;
+        background-color: #00000067;
+    }
+    .content-wrap{
+        h3,
+        p{
+            color: $white;
+        }
+    }
+}
+.testimonial-content-wrapper{
+    padding-top: 60px;
+    @include media-breakpoint-down(sm){
+        padding-top: 25px;
+    }
+    @include media-breakpoint-up(sm){
+        padding-top: 30px;
+    }
+    .team-lead{
+        @include media-breakpoint-up(sm){
+            margin-right: -50px;
+        }
+    }
+}
+.testimonial-carousel-content{
+    height: 100%;
+    .swiper-wrapper{
+        align-items: center;
+    }
+    .swiper-slide{
+        height: auto;
+    }
+}
+.carousel-figure-wrapper,
+.carousel-content-wrapper{
+    background-color: $light-green;
+    padding: 30px;
+    color: $base-text;
+}
+
+.body-copy{
+    position: relative; 
+    width: 100%; 
+    height: auto;
+    span{
+        @include slideUpAnimation;
+    }
+}
+.body-copy-two{
+    position: absolute; 
+    visibility: hidden; 
+    height: 0; 
+    padding: 0; 
+    margin: 0;
+}
+.carousel-figure-wrapper{
+    position: relative;
+    padding-right: 70px;
+    @include media-breakpoint-down(sm){
+        padding-right: 50px;
+        padding-right: 30px;
+    }
+    &::after{
+        position: absolute;
+        z-index: 3;
+        left: 0; 
+        top: 0; 
+        right: 0;
+        bottom: 0;
+        content: "";
+    }
+    .swiper-slide{        
+        img{
+            @include transform(translateX(-200px));
+            @include transition;
+            opacity: 0;
+        }
+        &.swiper-slide-active{
+           img{
+                @include transform(translateX(0px));
+                opacity: 1;
+                transition-delay: .5s;
+            }
+        }
+    }
+}
+.carousel-content-wrapper{
+    @include media-breakpoint-up(sm){
+        margin-top: 80px;
+        margin-bottom: -30px;
+        margin-left: -50px;
+        border-left: 5px solid $green;
+    }
+    @include media-breakpoint-down(sm){
+        padding-top: 0;
+        padding-bottom: 90px;
+    }
+    position: relative;
+    .swiper-slide{
+        p{
+            margin-top: 20px;
+        }
+        h4{
+            @include slideUpAnimation;
+        }
+        &.swiper-slide-active{
+            .body-copy > span,
+            h4{
+               animation-name: SlideUp; 
+                animation-delay: .2s;
+            }
+        }
+    }    
+    .carousel-controller{
+        position: absolute; right: 0; top: -27px;
+        border-bottom: 5px solid $green;
+        @include media-breakpoint-down(sm){
+            top: auto; 
+            right: auto;
+            bottom: 35px;
+            left: 30px;
+            
+        }
+        .arrow{
+            float: left;
+            background-color: #ffffff;
+            padding: 7px;
+            cursor: pointer;
+            position: relative;
+            z-index: 1;
+            overflow: hidden;
+            img{
+                float: left;
+            }
+            &:focus{
+                outline: none;
+            }
+            &::before{
+                @include sudoElement($right: auto);
+                width: 0;
+                @include transition;
+                background-color: $green;
+            }
+            &.prev{
+                &::before{
+                    left: auto;
+                    right: 0;
+                }
+            }
+            &:hover{
+                &::before{
+                    width: 100%;
+                }
+            }
+        }
+    }
+}
